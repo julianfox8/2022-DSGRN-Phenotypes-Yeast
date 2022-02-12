@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+#clb2_ON queries
+python parameter_intersect.py ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/swi5_nrm1/cho_data/dsgrn_net_query_results20210913155437/queries20210913155437/query_results_stablefc_cho_cdc14-3_r1_metdata_param_list.json ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/clb2_high_XC.json ~/dsgrn_net_query/yeast_PM/networks/WT_with_clb2/WT_clb2_nonE_swi5_nrm1.txt 'r1' ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/swi5_nrm1/cho_data/
+
+python parameter_intersect.py ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/swi5_yox1/cho_data/dsgrn_net_query_results20210913155437/queries20210913155437/query_results_stablefc_cho_cdc14-3_r1_metdata_param_list.json ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/clb2_high_XC.json ~/dsgrn_net_query/yeast_PM/networks/WT_with_clb2/WT_clb2_nonE_swi5_yox1.txt 'r1' ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/swi5_yox1/cho_data/
+
+python parameter_intersect.py ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/ace2_nrm1/cho_data/dsgrn_net_query_results20210913155437/queries20210913155437/query_results_stablefc_cho_cdc14-3_r1_metdata_param_list.json ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/clb2_high_XC.json ~/dsgrn_net_query/yeast_PM/networks/WT_with_clb2/WT_clb2_nonE_ace2_nrm1.txt 'r1' ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/ace2_nrm1/cho_data/
+
+python parameter_intersect.py ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/ace2_yox1/cho_data/dsgrn_net_query_results20210913155437/queries20210913155437/query_results_stablefc_cho_cdc14-3_r1_metdata_param_list.json ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/clb2_high_XC.json ~/dsgrn_net_query/yeast_PM/networks/WT_with_clb2/WT_clb2_nonE_ace2_yox1.txt 'r1' ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/ace2_yox1/cho_data/
+
