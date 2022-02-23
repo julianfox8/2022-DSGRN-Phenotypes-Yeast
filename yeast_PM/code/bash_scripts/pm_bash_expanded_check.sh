@@ -2,7 +2,7 @@
 
 #clb2_ON queries cho (mod lo data)
 
-time mpiexec -n 12 python ~/dsgrn_net_query/src/dsgrn_net_query/queries/CountPatternMatch_large_networks_parameter_indices_SWI5_NRM1.py ~/dsgrn_net_query/yeast_PM/networks/WT_with_clb2/WT_clb2_nonE_swi5_nrm1.txt ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/p_file_clb2_ON_unnormalized.json ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/swi5_nrm1/unnormalized/ ~/dsgrn_net_query/yeast_PM/networks/WT_without_clb2/WT_nonE_swi5_nrm1.txt #phenotype II, clb2_ON, proxies swi5/nrm1
+time mpiexec -n 12 python ~/2022-DSGRN-Phenotypes-Yeast/yeast_PM/code/scripts/proxy_stable_XCs/CountPatternMatch_large_networks_parameter_indices_SWI5_NRM1.py ~/dsgrn_net_query/yeast_PM/networks/WT_with_clb2/WT_clb2_nonE_swi5_nrm1.txt ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/p_file_clb2_ON_unnormalized.json ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/swi5_nrm1/unnormalized/ ~/dsgrn_net_query/yeast_PM/networks/WT_without_clb2/WT_nonE_swi5_nrm1.txt #phenotype II, clb2_ON, proxies swi5/nrm1
 
 time mpiexec -n 12 python ~/dsgrn_net_query/src/dsgrn_net_query/queries/CountPatternMatch_large_networks_parameter_indices_SWI5_YOX1.py ~/dsgrn_net_query/yeast_PM/networks/WT_with_clb2/WT_clb2_nonE_swi5_yox1.txt ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/p_file_clb2_ON_unnormalized.json ~/dsgrn_net_query/yeast_PM/functional_phenotype_II/clb2_ON/swi5_yox1/unnormalized/ ~/dsgrn_net_query/yeast_PM/networks/WT_without_clb2/WT_nonE_swi5_yox1.txt #phenotype II, clb2_ON, proxies swi5/yox1
 

@@ -254,9 +254,9 @@ def PathMatch(network, posets, domain, stablefc,dsgrn_param):
         for (eps, (events, event_ordering)) in poset_list:
             patterngraph = DSGRN.PatternGraph(DSGRN.PosetOfExtrema(network,events,event_ordering))
             if domain:
-                DomMatch[tsfile][eps] = domain_check(domaingraph,patterngraph)
+                DomMatch[tsfile][str(eps)] = domain_check(domaingraph,patterngraph)
             if stablefc:
-                FCMatch[tsfile][eps], FC = stableFC_check(domaingraph,patterngraph)
+                FCMatch[tsfile][str(eps)], FC = stableFC_check(domaingraph,patterngraph)
     results = {}
     if domain:
         results["domain"] = DomMatch
