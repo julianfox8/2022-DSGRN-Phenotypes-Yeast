@@ -10,22 +10,24 @@ The wt parameter dictionary for a specific proxy gets passed into this function 
 :xc_pm_dict= the dictionary containing the results from mathcing the network to a mutant dataset
 :network= the network used to find the pattern matches
 :fg_label= the clb2 factor graph hex code label for the cellular phenotype of interest
+:pheno= proxy label for the phenotype of interest
 :resultdir= path to results directory
 
 '''
 
-def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, resultdir=''):
+def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, pheno, resultdir=''):
     net_spec = read_networks(network)
     net = DSGRN.Network(network)
     pg = DSGRN.ParameterGraph(net)
     wt_dict = json.load(open(wt_pm_dict))
     wt_plist = wt_dict[net_spec[0]]
     xc_pm_dict = json.load(open(xc_pm_dict))
-    xc_pm_dict = xc_pm_dict[net_spec[0]]
+    xc_pm_plist = xc_pm_dict[net_spec[0]]
     pm_dict = {}
-    for n,l in wt_plist:
+    for noise,l in wt_plist:
         clb2_con = []
-        for i in wt_plist:
+        clb2_xc = []
+        for i in wt_plist[int(noise)][1]:
             orders = []
             hex_code = []
             param = pg.parameter(i)
@@ -35,11 +37,14 @@ def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, resultdir=''):
             hex_code[3] = fg_label
             new_param_OFF = construct_parameter(net, hex_code, orders)
             clb2_con.append(pg.index(new_param_OFF))
-        l = xc_pm_dict[n]
-        xc_pm = list(set(l).intersection(clb2_con))
-        pm_dict[n] = len(xc_pm)
+        for index,v in enumerate(xc_pm_plist):
+            clb2_xc = xc_pm_plist[index][1]
+        print(len(clb2_con))
+        print(len(clb2_xc))
+        xc_pm = list(set(clb2_xc).intersection(clb2_con))
+        pm_dict[noise] = len(xc_pm)
     net_name = os.path.splitext(os.path.basename(network))[0]
-    fname = "{}_WT_XC_transition.json".format(net_name)
+    fname = "{}_{}_WT_XC_transition.json".format(net_name, pheno)
     dir = os.path.join(resultdir, fname)
     with open(dir, 'w') as f:
         json.dump(pm_dict, f)
@@ -49,5 +54,6 @@ if __name__ == '__main__':
     xc_pm_dict = sys.argv[2]
     network = sys.argv[3]
     fg_label = sys.argv[4]
-    resultdir = sys.argv[5]
-    param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, resultdir)
+    pheno = sys.argv[5]
+    resultdir = sys.argv[6]
+    param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, pheno, resultdir)
