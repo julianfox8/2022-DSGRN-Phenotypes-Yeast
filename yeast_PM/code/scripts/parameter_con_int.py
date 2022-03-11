@@ -1,6 +1,7 @@
 import json
 import DSGRN
 import sys, os, ast
+from tqdm import tqdm
 from dsgrn_utilities.parameter_building import construct_parameter
 from dsgrn_net_query.utilities.file_utilities import read_networks
 
@@ -25,9 +26,13 @@ def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, pheno, resultdir
     xc_pm_plist = xc_pm_dict[net_spec[0]]
     pm_dict = {}
     for noise,l in wt_plist:
-        clb2_con = []
+        print("Starting transitions for {} proxy with a {} noise level:\n".format(pheno,noise), flush=True)
+        clb2_con = [] 
         clb2_xc = []
-        for i in wt_plist[int(noise)][1]:
+        for index,v in enumerate(xc_pm_plist):
+            if noise == xc_pm_plist[index][0]:
+                clb2_xc = xc_pm_plist[index][1]
+        for i in tqdm(wt_plist[int(noise)][1]):
             orders = []
             hex_code = []
             param = pg.parameter(i)
@@ -37,12 +42,11 @@ def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, pheno, resultdir
             hex_code[3] = fg_label
             new_param_OFF = construct_parameter(net, hex_code, orders)
             clb2_con.append(pg.index(new_param_OFF))
-        for index,v in enumerate(xc_pm_plist):
-            clb2_xc = xc_pm_plist[index][1]
-        print(len(clb2_con))
-        print(len(clb2_xc))
+        print("Number of XC parameters = {}\n".format(len(clb2_xc)), flush=True)
+        print("Number of reconstructed WT parameters = {}\n".format(len(clb2_con)), flush=True)
         xc_pm = list(set(clb2_xc).intersection(clb2_con))
         pm_dict[noise] = len(xc_pm)
+        print("End of transitions for {} proxy with a {} noise level: \n where {} matches were found between reconstructed WT parameters and XC parameters\n\n".fomrat(pheno,noise,len(xc_pm)))
     net_name = os.path.splitext(os.path.basename(network))[0]
     fname = "{}_{}_WT_XC_transition.json".format(net_name, pheno)
     dir = os.path.join(resultdir, fname)
