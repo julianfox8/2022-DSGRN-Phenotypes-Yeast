@@ -9,11 +9,13 @@ from dsgrn_net_query.utilities.file_utilities import read_networks
 The wt parameter dictionary for a specific proxy gets passed into this function to create a list of constructed clb2 perturbed parameters corresponding to a cellular phenotype of interest (clb2 ON, OFF, med HI, med LO) at each noise level where parameters were found. Each list of constructed parameters is intersected with the corresponding pattern matched list for partial cycling to determine the constructed parameters that are pattern matched to the mutant data set of interest.
 :wt_pm_dict= the dictionary containing the results from matching the network to the wild-type dataset
 :xc_pm_dict= the dictionary containing the results from mathcing the network to a mutant dataset
-:network= the network used to find the pattern matches
+:network= the network .txt file corresponding to the network used to find the pattern matches
 :fg_label= the clb2 factor graph hex code label for the cellular phenotype of interest
-:pheno= proxy label for the phenotype of interest
+    example hex code: '3F' (hex cod eargument must be passed with quotations as in the example)
+:pheno= proxy label for the phenotype of interest used to label the output dictionary
 :resultdir= path to results directory
 
+:output: dictionary .json file containing the number of matches at each noise level for that specific phenotype and proxy
 '''
 
 def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, pheno, resultdir=''):
@@ -46,7 +48,7 @@ def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, pheno, resultdir
         print("Number of reconstructed WT parameters = {}\n".format(len(clb2_con)), flush=True)
         xc_pm = list(set(clb2_xc).intersection(clb2_con))
         pm_dict[noise] = len(xc_pm)
-        print("End of transitions for {} proxy with a {} noise level: \n where {} matches were found between reconstructed WT parameters and XC parameters\n\n".fomrat(pheno,noise,len(xc_pm)))
+        print("End of transitions for {} proxy with a {} noise level: \n where {} matches were found between reconstructed WT parameters and XC parameters\n\n".format(pheno,noise,len(xc_pm)))
     net_name = os.path.splitext(os.path.basename(network))[0]
     fname = "{}_{}_WT_XC_transition.json".format(net_name, pheno)
     dir = os.path.join(resultdir, fname)
