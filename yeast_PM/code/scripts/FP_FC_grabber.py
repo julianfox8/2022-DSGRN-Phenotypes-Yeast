@@ -11,9 +11,9 @@ def query_filter(unfiltered_l):
         elif v.endswith("3, 1 }"): 
             pass 
         elif v not in filtered_l: 
-            filtered_l[k] = [v] 
+            filtered_l[v] = [k] 
         else: 
-            filtered_l[k].append(v)
+            filtered_l[v].append(k)
     return filtered_l
 
 def fp_queries(db):
@@ -26,16 +26,17 @@ def fp_queries(db):
         bistable_query = list(set([row[0] for row in cursor.execute("select ParameterIndex from Signatures natural join (select MorseGraphIndex, count(*) as StableCount from (select MorseGraphIndex,Vertex from MorseGraphVertices except select MorseGraphIndex,Source from MorseGraphEdges) group by MorseGraphIndex) where StableCount=2;")]))
         multistable_query = list(set([row[0] for row in cursor.execute("select ParameterIndex from Signatures natural join (select MorseGraphIndex, count(*) as StableCount from (select MorseGraphIndex,Vertex from MorseGraphVertices except select MorseGraphIndex,Source from MorseGraphEdges) group by MorseGraphIndex) where StableCount>2;")]))
         FP_query = dict(set([ row for row in cursor.execute('select ParameterIndex,label from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
-        query_filtered = query_filter(FP_query)
-        bistable_fp_keys = set(bistable_query).intersection(query_filtered.keys())
+        bistable_fp_keys = set(bistable_query).intersection(FP_query.keys())
         bistable_fp = {k:FP_query[k] for k in bistable_fp_keys}
-        with open("bistable_fp_query.json", "w") as f:
-            json.dump(bistable_fp, f)
-        multistable_fp_keys = set(multistable_query).intersection(query_filtered.keys())
+        multistable_fp_keys = set(multistable_query).intersection(FP_query.keys())
         multistable_fp = {k:FP_query[k] for k in tqdm.tqdm(multistable_fp_keys)}
+        bistable_fp_filtered = query_filter(bistable_fp)
+        with open("bistable_fp_query.json", "w") as f:
+            json.dump(bistable_fp_filtered, f)
+        multistable_fp_filtered = query_filter(multistable_fp)
         with open("multistable_fp_query.json", "w") as f:
-            json.dump(multistable_fp, f)
-    return multistable_fp, bistable_fp
+            json.dump(multistable_fp_filtered, f)
+    return multistable_fp_filtered, bistable_fp_filtered
 
 def FC_FP_grabber(db,wt_pm, network, resultdir):
     multistable_fp,bistable_fp = fp_queries(db)
