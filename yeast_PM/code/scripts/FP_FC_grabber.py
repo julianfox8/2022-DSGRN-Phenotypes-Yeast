@@ -55,6 +55,7 @@ def FC_FP_grabber(db,wt_pm, network, resultdir):
             multistable_list['multistable'][fp] = len(ml_fp)
         fc_fp_dict[n] = bistable_list
         fc_fp_dict[n].update(multistable_list)
+        print(bistable_list, multistable_list)
     net_name = os.path.splitext(os.path.basename(network))[0]
     fname = "{}_pheno_III.json".format(net_name)
     dir = os.path.join(resultdir, fname)
