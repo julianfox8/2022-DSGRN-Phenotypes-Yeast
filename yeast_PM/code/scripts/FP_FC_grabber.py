@@ -4,6 +4,9 @@ import json, sys, os, tqdm
 from dsgrn_net_query.utilities.file_utilities import read_networks
 
 def query_filter(unfiltered_l):
+    '''
+    Given a list of tuples containing a fixed point (FP) label and a DSGRN parameter index, this function filters the FP labels, grabs the parameter indices corrseponding to the FP of interest and stores this data in a dictionary. The FP label of interest is 'FP { 0-1, 0, 2, 0-2, 1 }'. The dictionary that is compiled has keys containing FP labels and values containing DSGRN parameters corresponding to each FP label, respectively. 
+    '''
     filtered_l = {}
     for k,v in unfiltered_l.items(): 
         if v.startswith("FP { 2") or v.startswith("FP { 3"): 
@@ -17,6 +20,9 @@ def query_filter(unfiltered_l):
     return filtered_l
 
 def fp_queries(db):
+    '''
+    Given a database for a DSGRN network this function compiles two dictionaries containing FP label keys and DSGRN parameter values. Before runnning the sql query the function checks if these dictionaries are already compiled. If not, the sql queries are ran which find all bistable and multistable parameters into two lists and all FP labels of interest into a dictionary. These objects are returned as outputs when the function is called. 
+    '''
     if os.path.exists("bistable_fp_query.json") and os.path.exists("multistable_fp_query.json"):
         multistable_fp =  json.load(open("multistable_fp_query.json"))
         bistable_fp = json.load(open("bistable_fp_query.json"))
@@ -29,7 +35,7 @@ def fp_queries(db):
         bistable_fp_keys = set(bistable_query).intersection(FP_query.keys())
         bistable_fp = {k:FP_query[k] for k in bistable_fp_keys}
         multistable_fp_keys = set(multistable_query).intersection(FP_query.keys())
-        multistable_fp = {k:FP_query[k] for k in tqdm.tqdm(multistable_fp_keys)}
+        multistable_fp = {k:FP_query[k] for k in multistable_fp_keys}
         bistable_fp_filtered = query_filter(bistable_fp)
         with open("bistable_fp_query.json", "w") as f:
             json.dump(bistable_fp_filtered, f)
@@ -39,6 +45,16 @@ def fp_queries(db):
     return multistable_fp_filtered, bistable_fp_filtered
 
 def FC_FP_grabber(db,wt_pm, network, resultdir):
+    '''
+    Given a DSGRN database, a wild-type (WT) pattern matched dictionary for full cycles (FCs), a DSGRN network, and a path to the results this function finds all DSGRN parameters exhibiting bistability and multistability between a FC and a FP of interest.
+    :db = DSGRN database .db file 
+    :wt_pm = wild-type pattern matched dictionary of FCs
+    :network = DSGRN network .txt file
+    :resultdir = path to directory where results will be stored
+
+    output:
+    .json file containing a dictionary which gives the matches of bistability or multistabiltiy for each of the FP labels at each of the noise levels the WT pattern matched dictionary contains.
+    '''
     multistable_fp,bistable_fp = fp_queries(db)
     wt_dict = json.load(open(wt_pm))
     net_spec = read_networks(network)
