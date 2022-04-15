@@ -24,7 +24,7 @@ def hex_order_comp(net,wt_pm,fp_list):
     net_spec = read_networks(net)
     wt_plist = wt_dict[net_spec[0]]
     fp_dict = json.load(open(fp_list))
-    fp_list = sum(fp_dict.values,[])
+    fp_list = sum(fp_dict.values(),[])
     #fp_list = json.load(open(fp_list))
     fp_hex_order = hex_order_grabber(net,fp_list)
     shared_hex_order = {}
