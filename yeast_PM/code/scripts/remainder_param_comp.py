@@ -19,21 +19,22 @@ def hex_order_grabber(net,plist):
     return(hex_orders)
 
 
-def hex_order_comp(net,wt_pm,fp_file):
+def hex_order_comp(net,wt_pm,fp_file, resultdir=''):
     wt_dict = json.load(open(wt_pm))
     net_spec = read_networks(net)
     wt_plist = wt_dict[net_spec[0]]
     fp_dict = json.load(open(fp_file))
     fp_list = sum(fp_dict.values(),[])
-    #fp_list = json.load(open(fp_list))
     fp_hex_order = hex_order_grabber(net,fp_list)
     shared_hex_order = {}
     for n,pl in wt_plist:
         noise_hex_order = hex_order_grabber(net,pl)
         shared_hex_order[n] = len(fp_hex_order.intersection(noise_hex_order))
+    net_name = os.path.splitext(os.path.basename(net))[0]
     f = os.path.basename(fp_file).split('_')[0]
-    filename = "{}_remainder.json".format(f)
-    with open(filename, "w") as f:
+    filename = "{}_{}_remainder.json".format(net_name,f)
+    dir = os.path.join(resultdir, filename)
+    with open(dir, "w") as f:
         json.dump(shared_hex_order,f)
 
 
@@ -41,4 +42,5 @@ if __name__ == '__main__':
     net =sys.argv[1]
     wt_pm = sys.argv[2]
     fp_file = sys.argv[3]
-    hex_order_comp(net, wt_pm, fp_file)
+    resultdir = sys.argv[4]
+    hex_order_comp(net, wt_pm, fp_file, resultdir)
