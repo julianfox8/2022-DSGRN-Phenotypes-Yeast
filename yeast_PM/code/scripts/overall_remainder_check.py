@@ -26,7 +26,7 @@ def fp_grabber(db):
     else:
         c = sqlite3.connect(db)
         cursor = c.cursor()
-        FP_query = dict(set([ row for row in cursor.execute('select ParameterIndex,label from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
+        FP_query = dict(set([ row for row in cursor.execute('select ParameterIndex from Signatures natural join ( select MorseGraphIndex from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
         with open("fp_query.json", "w") as f:
             json.dump(FP_query, f)
     return FP_query
