@@ -2,8 +2,6 @@ import json
 import DSGRN
 import sys, os, ast, sqlite3
 from dsgrn_net_query.utilities.file_utilities import read_networks
-from pyrsistent import mutant
-from sqlalchemy import over
 
 def hex_order_grabber(net,plist):
     net = DSGRN.Network(net)
@@ -26,7 +24,7 @@ def fp_grabber(db):
     else:
         c = sqlite3.connect(db)
         cursor = c.cursor()
-        FP_query = dict(set([ row[0] for row in cursor.execute('select ParameterIndex,label from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
+        FP_query = list(set([ row[0] for row in cursor.execute('select ParameterIndex from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
         with open("fp_query.json", "w") as f:
             json.dump(FP_query, f)
     return FP_query
