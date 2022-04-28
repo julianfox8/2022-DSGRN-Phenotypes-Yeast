@@ -60,7 +60,8 @@ def overall_remainder_comp(db,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     wt_dict = json.load(open(wt_pm))
     wt_plist = wt_dict[net_spec[0]]
     wt_hex_order = hex_order_grabber(net,wt_plist[-1][1])
-    overall_hex_order = mutant_fp_hex_order.intersection(wt_hex_order)
+    overall_hex_order_set = mutant_fp_hex_order.intersection(wt_hex_order)
+    overall_hex_order = list(overall_hex_order_set)
     net_name = os.path.splitext(os.path.basename(net))[0]
     f_name = "{}_overall_remainder.json".format(net_name)
     with open(f_name,'w') as f:
