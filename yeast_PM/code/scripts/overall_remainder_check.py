@@ -2,6 +2,7 @@ import json
 import DSGRN
 import sys, os, ast, sqlite3
 from dsgrn_net_query.utilities.file_utilities import read_networks
+from pyrsistent import mutant
 
 def hex_order_grabber(net,plist):
     net = DSGRN.Network(net)
@@ -56,11 +57,14 @@ def overall_remainder_comp(db,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     fp_plist = fp_grabber(db)
     fp_hex_order = hex_order_grabber(net,fp_plist)
     mutant_hex_order_list = mutant_hex_order(net, hi_pm,lo_pm,int_hi_pm,int_lo_pm)
+    print("mutant remainder parameters = {}".format(len(mutant_hex_order_list)))
     mutant_fp_hex_order = fp_hex_order.intersection(mutant_hex_order_list)
+    print("mutant fp remainder parameters = {}".format(len(mutant_fp_hex_order)))
     wt_dict = json.load(open(wt_pm))
     wt_plist = wt_dict[net_spec[0]]
     wt_hex_order = hex_order_grabber(net,wt_plist[-1][1])
     overall_hex_order_set = mutant_fp_hex_order.intersection(wt_hex_order)
+    print("overall remainder parameters = {}".format(len(overall_hex_order_set)))
     overall_hex_order = list(overall_hex_order_set)
     net_name = os.path.splitext(os.path.basename(net))[0]
     f_name = "{}_overall_remainder.json".format(net_name)
