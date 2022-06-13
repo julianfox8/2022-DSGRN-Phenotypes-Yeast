@@ -23,9 +23,10 @@ def fp_queries(db):
     '''
     Given a database for a DSGRN network this function compiles two dictionaries containing FP label keys and DSGRN parameter values. Before runnning the sql query the function checks if these dictionaries are already compiled. If not, the sql queries are ran which find all bistable and multistable parameters into two lists and all FP labels of interest into a dictionary. These objects are returned as outputs when the function is called. 
     '''
+    multistable_fp,bistable_fp = None
     if os.path.exists("bistable_fp_query_DDR.json") and os.path.exists("multistable_fp_query_DDR.json"):
-        multistable_fp =  json.load(open("multistable_fp_query_DDR.json"))
-        bistable_fp = json.load(open("bistable_fp_query_DDR.json"))
+        multistable_fp_filtered =  json.load(open("multistable_fp_query_DDR.json"))
+        bistable_fp_filtered = json.load(open("bistable_fp_query_DDR.json"))
     else:
         c = sqlite3.connect(db)
         cursor = c.cursor()
