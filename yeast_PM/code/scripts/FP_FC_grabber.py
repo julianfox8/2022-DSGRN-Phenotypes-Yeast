@@ -37,10 +37,10 @@ def fp_queries(db):
         multistable_fp_keys = set(multistable_query).intersection(FP_query.keys())
         multistable_fp = {k:FP_query[k] for k in multistable_fp_keys}
         bistable_fp_filtered = query_filter(bistable_fp)
-        with open("bistable_fp_query.json", "w") as f:
+        with open("bistable_fp_query_DDR.json", "w") as f:
             json.dump(bistable_fp_filtered, f)
         multistable_fp_filtered = query_filter(multistable_fp)
-        with open("multistable_fp_query.json", "w") as f:
+        with open("multistable_fp_query_DDR.json", "w") as f:
             json.dump(multistable_fp_filtered, f)
     return multistable_fp_filtered, bistable_fp_filtered
 
