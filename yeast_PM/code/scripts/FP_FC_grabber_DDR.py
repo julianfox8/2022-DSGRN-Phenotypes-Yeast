@@ -23,7 +23,6 @@ def fp_queries(db):
     '''
     Given a database for a DSGRN network this function compiles two dictionaries containing FP label keys and DSGRN parameter values. Before runnning the sql query the function checks if these dictionaries are already compiled. If not, the sql queries are ran which find all bistable and multistable parameters into two lists and all FP labels of interest into a dictionary. These objects are returned as outputs when the function is called. 
     '''
-    multistable_fp,bistable_fp = None
     if os.path.exists("bistable_fp_query_DDR.json") and os.path.exists("multistable_fp_query_DDR.json"):
         multistable_fp_filtered =  json.load(open("multistable_fp_query_DDR.json"))
         bistable_fp_filtered = json.load(open("bistable_fp_query_DDR.json"))
@@ -34,13 +33,13 @@ def fp_queries(db):
         multistable_query = list(set([row[0] for row in cursor.execute("select ParameterIndex from Signatures natural join (select MorseGraphIndex, count(*) as StableCount from (select MorseGraphIndex,Vertex from MorseGraphVertices except select MorseGraphIndex,Source from MorseGraphEdges) group by MorseGraphIndex) where StableCount>2;")]))
         FP_query = dict(set([ row for row in cursor.execute('select ParameterIndex,label from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
         bistable_fp_keys = set(bistable_query).intersection(FP_query.keys())
-        bistable_fp = {k:FP_query[k] for k in bistable_fp_keys}
+        bistable_fp_dict = {k:FP_query[k] for k in bistable_fp_keys}
         multistable_fp_keys = set(multistable_query).intersection(FP_query.keys())
-        multistable_fp = {k:FP_query[k] for k in multistable_fp_keys}
-        bistable_fp_filtered = query_filter(bistable_fp)
+        multistable_fp_dict = {k:FP_query[k] for k in multistable_fp_keys}
+        bistable_fp_filtered = query_filter(bistable_fp_dict)
         with open("bistable_fp_query_DDR.json", "w") as f:
             json.dump(bistable_fp_filtered, f)
-        multistable_fp_filtered = query_filter(multistable_fp)
+        multistable_fp_filtered = query_filter(multistable_fp_dict)
         with open("multistable_fp_query_DDR.json", "w") as f:
             json.dump(multistable_fp_filtered, f)
     return multistable_fp_filtered, bistable_fp_filtered
