@@ -31,7 +31,7 @@ def fp_queries(db):
         cursor = c.cursor()
         bistable_query = list(set([row[0] for row in cursor.execute("select ParameterIndex from Signatures natural join (select MorseGraphIndex, count(*) as StableCount from (select MorseGraphIndex,Vertex from MorseGraphVertices except select MorseGraphIndex,Source from MorseGraphEdges) group by MorseGraphIndex) where StableCount=2;")]))
         multistable_query = list(set([row[0] for row in cursor.execute("select ParameterIndex from Signatures natural join (select MorseGraphIndex, count(*) as StableCount from (select MorseGraphIndex,Vertex from MorseGraphVertices except select MorseGraphIndex,Source from MorseGraphEdges) group by MorseGraphIndex) where StableCount>2;")]))
-        FP_query = dict(set([ row for row in cursor.execute('select ParameterIndex,label from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
+        FP_query = dict(set([ row for row in cursor.execute('select ParameterIndex,label from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, _, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
         bistable_fp_keys = set(bistable_query).intersection(FP_query.keys())
         bistable_fp_dict = {k:FP_query[k] for k in bistable_fp_keys}
         multistable_fp_keys = set(multistable_query).intersection(FP_query.keys())
