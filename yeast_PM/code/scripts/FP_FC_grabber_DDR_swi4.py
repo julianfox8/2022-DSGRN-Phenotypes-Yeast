@@ -10,7 +10,10 @@ def query_filter(unfiltered_l):
     filtered_l = {}
     for k,v in unfiltered_l.items(): 
         if v.endswith("1, 2, 0, 1 }"): 
-            filtered_l[v] = [k]  
+            if v in filtered_l:
+                filtered_l[v].append(k)
+            else:
+                filtered_l[v] = [k] 
         else: 
             pass
     return filtered_l
