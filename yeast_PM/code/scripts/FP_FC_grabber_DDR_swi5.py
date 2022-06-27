@@ -12,7 +12,7 @@ def query_filter(unfiltered_l):
         if v.startswith("FP { 0, 1, 2, 0"): 
             filtered_l[v] = [k] 
         else: 
-            filtered_l[v].append(k)
+            pass
     return filtered_l
 
 def fp_queries(db):
