@@ -61,7 +61,7 @@ def FC_FP_grabber(db,wt_pm, network, resultdir):
     
     wt_dict = json.load(open(wt_pm))
     net_spec = read_networks(network)
-    multistable_fp,bistable_fp = fp_queries(db,net_spec)
+    multistable_fp,bistable_fp = fp_queries(db,network)
     wt_plist = wt_dict[net_spec[0]]
     fc_fp_dict = {}
     for n,l in wt_plist:
