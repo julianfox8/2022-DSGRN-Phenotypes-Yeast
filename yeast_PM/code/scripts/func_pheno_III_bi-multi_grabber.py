@@ -9,7 +9,7 @@ def query_filter(unfiltered_l):
     '''
     filtered_l = {}
     for k,v in unfiltered_l.items(): 
-        if v.startswith("FP { 2") or v.startswith("FP { 3"): 
+        if v.startswith("FP { 2") or v.startswith("FP { 3") or v.startswith("FP { "): 
             pass 
         elif v.endswith(", 0 }"): 
             pass 
@@ -19,7 +19,7 @@ def query_filter(unfiltered_l):
             filtered_l[v].append(k)
     return filtered_l
 
-def fp_queries(db,net_spec):
+def fp_queries(db,network):
     '''
     Given a database for a DSGRN network this function compiles two dictionaries containing FP label keys and DSGRN parameter values. Before runnning the sql query the function checks if these dictionaries are already compiled. If not, the sql queries are ran which find all bistable and multistable parameters into two lists and all FP labels of interest into a dictionary. These objects are returned as outputs when the function is called. 
     '''
@@ -37,8 +37,9 @@ def fp_queries(db,net_spec):
         multistable_fp_keys = set(multistable_query).intersection(FP_query.keys())
         multistable_fp = {k:FP_query[k] for k in multistable_fp_keys}
         bistable_fp_filtered = query_filter(bistable_fp)
-        fn_bi = 'bistable_fp_query_{}.json'.format(net_spec)
-        fn_multi = 'multistable_fp_query_{}.json'.format(net_spec)
+        net_name = os.path.splitext(os.path.basename(network))[0]
+        fn_bi = 'bistable_fp_query_{}.json'.format(net_name)
+        fn_multi = 'multistable_fp_query_{}.json'.format(net_name)
         with open(fn_bi, "w") as f:
             json.dump(bistable_fp_filtered, f)
         multistable_fp_filtered = query_filter(multistable_fp)
