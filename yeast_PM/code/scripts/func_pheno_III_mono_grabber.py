@@ -11,7 +11,7 @@ def query_filter(unfiltered_l):
     for k,v in unfiltered_l.items(): 
         if v.startswith("FP { 2") or v.startswith("FP { 3"): 
             pass 
-        elif v.endswith(", 1 }"): 
+        elif v.endswith(", 0 }"): 
             pass 
         elif v not in filtered_l: 
             filtered_l[v] = [k] 
