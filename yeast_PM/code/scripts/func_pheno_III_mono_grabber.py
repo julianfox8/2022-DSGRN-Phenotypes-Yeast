@@ -9,7 +9,7 @@ def query_filter(unfiltered_l):
     '''
     filtered_l = {}
     for k,v in unfiltered_l.items(): 
-        if v.startswith("FP { 2") or v.startswith("FP { 3"): 
+        if v.startswith("FP { 2") or v.startswith("FP { 3")or v.startswith("FP { 1"): 
             pass 
         elif v.endswith(", 0 }"): 
             pass 
@@ -27,7 +27,7 @@ def fp_queries(db):
         monostable_fp_keys = set(monostable_query).intersection(FP_query.keys())
         monostable_fp = {k:FP_query[k] for k in monostable_fp_keys}
         monostable_fp_filtered = query_filter(monostable_fp)
-        with open("monostable_fp_query.json", "w") as f:
+        with open("monostable_fp_query_SAC.json", "w") as f:
             json.dump(monostable_fp_filtered, f)
 
 
