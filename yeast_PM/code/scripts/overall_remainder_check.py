@@ -19,16 +19,6 @@ def hex_order_grabber(net,plist):
         hex_orders.add(hex_order)
     return(hex_orders)
 
-def fp_grabber(db):
-    if os.path.exists("fp_query.json"):
-        FP_query =  json.load(open("fp_query.json"))
-    else:
-        c = sqlite3.connect(db)
-        cursor = c.cursor()
-        FP_query = list(set([ row[0] for row in cursor.execute('select ParameterIndex from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
-        with open("fp_query.json", "w") as f:
-            json.dump(FP_query, f)
-    return FP_query
 
 def mutant_hex_order(net,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     net_spec = read_networks(net)
@@ -52,35 +42,37 @@ def mutant_hex_order(net,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     overall_mutant_hex_order = hi_lo_int_hi_hex_order.intersection(int_lo_hex_order)
     return overall_mutant_hex_order
 
-def overall_remainder_comp(db,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
+def overall_remainder_comp(checkpoint_fps,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     net_spec = read_networks(net)
-    fp_plist = fp_grabber(db)
-    fp_hex_order = hex_order_grabber(net,fp_plist)
     mutant_hex_order_list = mutant_hex_order(net, hi_pm,lo_pm,int_hi_pm,int_lo_pm)
     print("mutant remainder parameters = {}".format(len(mutant_hex_order_list)))
-    mutant_fp_hex_order = fp_hex_order.intersection(mutant_hex_order_list)
-    print("mutant fp remainder parameters = {}".format(len(mutant_fp_hex_order)))
     wt_dict = json.load(open(wt_pm))
     wt_plist = wt_dict[net_spec[0]]
     wt_hex_order = hex_order_grabber(net,wt_plist[-1][1])
-    overall_hex_order_set = mutant_fp_hex_order.intersection(wt_hex_order)
+    cycling_hex_order = wt_hex_order.intersection(mutant_hex_order_list)
+    print("cycling remainder parameters = {}".format(len(cycling_hex_order)))
+    fp_plist = json.load(open(checkpoint_fps))
+    fp_hex_order = hex_order_grabber(net,fp_plist)
+    overall_hex_order_set = fp_hex_order.intersection(cycling_hex_order)
     print("overall remainder parameters = {}".format(len(overall_hex_order_set)))
     overall_hex_order = list(overall_hex_order_set)
     net_name = os.path.splitext(os.path.basename(net))[0]
-    f_name = "{}_overall_remainder.json".format(net_name)
-    with open(f_name,'w') as f:
+    overall_fname = "{}_overall_remainder.json".format(net_name)
+    with open(overall_fname,'w') as f:
         json.dump(overall_hex_order,f)
-
+    cycling_fname = "{}_cycling_remainder.json".format(net_name)
+    with open(cycling_fname,'w') as f:
+        json.dump(cycling_hex_order,f)
 
 if __name__ == '__main__':
-    db = sys.argv[1]
+    checkpoint_fps = sys.argv[1]
     net =sys.argv[2]
     wt_pm = sys.argv[3]
     hi_pm = sys.argv[4]
     lo_pm = sys.argv[5]
     int_hi_pm = sys.argv[6]
     int_lo_pm = sys.argv[7]
-    overall_remainder_comp(db,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo_pm)
+    overall_remainder_comp(checkpoint_fps,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo_pm)
 
 
 
