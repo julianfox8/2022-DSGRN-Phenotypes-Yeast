@@ -19,6 +19,21 @@ def hex_order_grabber(net,plist):
         hex_orders.add(hex_order)
     return(hex_orders)
 
+def fp_hex_order_grabber(net,plist):
+    net = DSGRN.Network(net)
+    pg = DSGRN.ParameterGraph(net)
+    fp_hex_orders = set()
+    for i in plist:
+        param = pg.parameter(i[0])
+        hex_order = tuple()
+        for j in range(net.size()):
+            if j == 3:
+                pass
+            else:
+                hex_order = hex_order + ((param.logic()[j].hex(),str(ast.literal_eval(str(param.order()[j])))))
+        fp_hex_orders.add(hex_order)
+    return(fp_hex_orders)
+
 
 def mutant_hex_order(net,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     net_spec = read_networks(net)
@@ -52,7 +67,7 @@ def overall_remainder_comp(checkpoint_fps,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo
     cycling_hex_order = wt_hex_order.intersection(mutant_hex_order_list)
     print("cycling remainder parameters = {}".format(len(cycling_hex_order)))
     fp_plist = json.load(open(checkpoint_fps))
-    fp_hex_order = hex_order_grabber(net,fp_plist)
+    fp_hex_order = fp_hex_order_grabber(net,fp_plist)
     overall_hex_order_set = fp_hex_order.intersection(cycling_hex_order)
     print("overall remainder parameters = {}".format(len(overall_hex_order_set)))
     overall_hex_order = list(overall_hex_order_set)
