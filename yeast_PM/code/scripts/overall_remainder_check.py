@@ -17,7 +17,7 @@ def hex_order_grabber(net,plist):
             else:
                 hex_order = hex_order + ((param.logic()[j].hex(),str(ast.literal_eval(str(param.order()[j])))))
         hex_orders.add(hex_order)
-    print(hex_orders)
+    print(len(hex_orders))
     return(hex_orders)
 
 def fp_hex_order_grabber(net,plist):
