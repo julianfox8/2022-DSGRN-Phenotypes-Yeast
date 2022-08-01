@@ -78,10 +78,10 @@ def overall_remainder_comp(checkpoint_fps,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo
     net_name = os.path.splitext(os.path.basename(net))[0]
     overall_fname = "{}_overall_remainder.json".format(net_name)
     with open(overall_fname,'w') as f:
-        json.dump(overall_hex_order,f)
+        json.dump(list(overall_hex_order),f)
     cycling_fname = "{}_cycling_remainder.json".format(net_name)
     with open(cycling_fname,'w') as f:
-        json.dump(cycling_hex_order,f)
+        json.dump(list(cycling_hex_order),f)
 
 if __name__ == '__main__':
     checkpoint_fps = sys.argv[1]
