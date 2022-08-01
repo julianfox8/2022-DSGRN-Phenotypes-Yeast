@@ -8,6 +8,7 @@ def hex_order_grabber(net,plist):
     net = DSGRN.Network(net)
     pg = DSGRN.ParameterGraph(net)
     hex_orders = set()
+    print(len(plist))
     for i in plist:
         param = pg.parameter(i)
         hex_order = tuple()
