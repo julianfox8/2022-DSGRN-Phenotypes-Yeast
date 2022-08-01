@@ -17,6 +17,7 @@ def hex_order_grabber(net,plist):
             else:
                 hex_order = hex_order + ((param.logic()[j].hex(),str(ast.literal_eval(str(param.order()[j])))))
         hex_orders.add(hex_order)
+    print(hex_orders)
     return(hex_orders)
 
 def fp_hex_order_grabber(net,plist):
@@ -40,7 +41,7 @@ def mutant_hex_order(net,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     hi_plist = json.load(open(hi_pm))
     hi_plist = hi_plist[net_spec[0]]
     hi_hex_order = hex_order_grabber(net,hi_plist[-1][1])
-    print(len(hi_hex_order))
+    print(hi_hex_order)
     del hi_plist
     lo_plist = json.load(open(lo_pm))
     lo_plist = lo_plist[net_spec[0]]
