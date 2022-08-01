@@ -49,10 +49,10 @@ def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, pheno, resultdir
         print("Number of XC parameters = {}\n".format(len(clb2_xc)), flush=True)
         print("Number of reconstructed WT parameters = {}\n".format(len(clb2_con)), flush=True)
         xc_pm = list(set(clb2_xc).intersection(clb2_con))
-        pm_dict[noise] = len(xc_pm)
+        pm_dict[noise] = xc_pm
         print("End of transitions for {} proxy with a {} noise level: \n where {} matches were found between reconstructed WT parameters and XC parameters\n\n".format(pheno,noise,len(xc_pm)))
     net_name = os.path.splitext(os.path.basename(network))[0]
-    fname = "{}_WT_XC_transition.json".format(net_name)
+    fname = "{}_param_list_WT_XC_transition.json".format(net_name)
     dir = os.path.join(resultdir, fname)
     with open(dir, 'w') as f:
         json.dump(pm_dict, f)
