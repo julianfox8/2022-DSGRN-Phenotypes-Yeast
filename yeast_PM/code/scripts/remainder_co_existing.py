@@ -19,7 +19,7 @@ def hex_order_grabber(net,plist):
         hex_orders.add(hex_order)
     return(hex_orders)
 
-def overall_remainder_comp(net,wt_pm,mutant_pm):
+def overall_remainder_comp(net,wt_pm,mutant_pm, resultdir):
     net_spec = read_networks(net)
     mutant_plist = json.load(open(mutant_pm))
     mutant_plist = mutant_plist[net_spec[0]]
@@ -32,7 +32,8 @@ def overall_remainder_comp(net,wt_pm,mutant_pm):
     overall_hex_order = list(overall_hex_order_set)
     net_name = os.path.splitext(os.path.basename(net))[0]
     f_name = "{}_remainder.json".format(net_name)
-    with open(f_name,'w') as f:
+    dir = os.path.join(resultdir, f_name)
+    with open(dir,'w') as f:
         json.dump(overall_hex_order,f)
 
 if __name__ == '__main__':
