@@ -39,6 +39,5 @@ if __name__ == '__main__':
     net = sys.argv[1]
     wt_pm_dict = sys.argv[2]
     mutant_pm_dict = sys.argv[3]
-    fg_label = sys.argv[4]
-    resultdir = sys.argv[5]
+    resultdir = sys.argv[4]
     overall_remainder_comp(net, wt_pm_dict, mutant_pm_dict, resultdir)
