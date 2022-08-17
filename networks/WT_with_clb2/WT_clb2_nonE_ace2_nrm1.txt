@@ -1,0 +1,5 @@
+SWI4 : (~NRM1)(~CLB2)(SWI4)(ACE2) : E
+NRM1 : (SWI4) : E
+NDD1 : (SWI4)(CLB2) : E
+CLB2 : (NDD1)
+ACE2 : (~CLB2)(NDD1) : E

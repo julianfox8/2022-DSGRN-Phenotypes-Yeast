@@ -1,0 +1,5 @@
+{
+"timeseriesfname" : "orlando2008_CyclinMutant_r1_trunc.tsv",
+"tsfile_is_row_format" : true,
+"epsilons" : [0.01]
+}

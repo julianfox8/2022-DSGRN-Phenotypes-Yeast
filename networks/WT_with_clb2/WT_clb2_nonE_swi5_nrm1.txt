@@ -1,0 +1,5 @@
+Swi4 : (~Nrm1)(~Clb2)(Swi4)(Swi5) : E
+Nrm1 : (Swi4) : E
+Ndd1 : (Swi4)(Clb2) : E
+Clb2 : (Ndd1)
+Swi5 : (~Clb2)(Ndd1) : E
