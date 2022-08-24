@@ -1,9 +1,20 @@
 import json
 import sys, os
-from modules.hex_order_grabber import hex_order_grabber
+from dsgrn_pheno_tools.hex_order_grabber import hex_order_grabber
 from dsgrn_net_query.utilities.file_utilities import read_networks
 
 def hex_order_comp(net,wt_pm,fp_file, noise, resultdir=''):
+    """
+    
+
+    :net= the network .txt file corresponding to the network used to find the pattern matches
+    :wt_pm_dict= the dictionary containing the results from matching the network to the wild-type dataset
+    :fp_file= the clb2 factor graph hex code label for the cellular phenotype of interest
+    :noise= 
+    :resultdir= path to results directory
+
+    :output: dictionary .json file containing the number of matches at each noise level for that specific phenotype and proxy
+    """
     wt_dict = json.load(open(wt_pm))
     net_spec = read_networks(net)
     wt_plist = wt_dict[net_spec[0][noise]]

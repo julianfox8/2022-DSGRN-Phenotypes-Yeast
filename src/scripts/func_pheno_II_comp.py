@@ -20,7 +20,7 @@ def param_transition(wt_pm_dict, xc_pm_dict, network, fg_label, pheno, resultdir
 
     :output: dictionary .json file containing the number of matches at each noise level for that specific phenotype and proxy
     '''
-
+    
     net_spec = read_networks(network)
     net = DSGRN.Network(network)
     pg = DSGRN.ParameterGraph(net)

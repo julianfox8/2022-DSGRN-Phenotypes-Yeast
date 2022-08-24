@@ -1,8 +1,8 @@
 import DSGRN
 import sqlite3
-import json, sys, os, tqdm
+import json, sys
 from dsgrn_net_query.utilities.file_utilities import read_networks
-from modules.fp_filter import fp_filter
+from dsgrn_pheno_tools.fp_filter import fp_filter
 
 def fp_queries(db):
         c = sqlite3.connect(db)
