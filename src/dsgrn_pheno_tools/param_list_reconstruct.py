@@ -12,9 +12,10 @@ def param_list_reconstruct(wt_pm_dict,xc_pm_dict,network,logic_label):
     net = DSGRN.Network(network)
     pg = DSGRN.ParameterGraph(net)
     wt_dict = json.load(open(wt_pm_dict))
-    wt_plist = wt_dict[0]
+    print(wt_dict.keys())
+    wt_plist = wt_dict[net_spec[0]]
     xc_pm_dict = json.load(open(xc_pm_dict))
-    xc_pm_plist = xc_pm_dict[0]
+    xc_pm_plist = xc_pm_dict[net_spec[0]]
     pm_dict = {}
     clb2_con = [] 
     clb2_xc = []
