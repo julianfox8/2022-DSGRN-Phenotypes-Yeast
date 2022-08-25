@@ -17,12 +17,12 @@ def param_transition(wt_pm_dict, xc_pm_dict, network,logic_label, resultdir=''):
 
     :output: dictionary .json file containing the number of matches at each noise level for that specific phenotype and proxy
     '''
-    param_reconstruct_dict = param_list_reconstruct( wt_pm_dict, xc_pm_dict, network, logic_label)
+    param_reconstruct_list = param_list_reconstruct( wt_pm_dict, xc_pm_dict, network, logic_label)
     net_name = os.path.splitext(os.path.basename(network))[0]
     fname = "{}_param_list_WT_XC_transition_test.json".format(net_name)
     dir = os.path.join(resultdir, fname)
     with open(dir, 'w') as f:
-        json.dump(param_reconstruct_dict, f)
+        json.dump(param_reconstruct_list, f)
 
 if __name__ == '__main__':
     wt_pm_dict = sys.argv[1]

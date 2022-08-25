@@ -12,13 +12,10 @@ def param_list_reconstruct(wt_pm_dict,xc_pm_dict,network,logic_label):
     net = DSGRN.Network(network)
     pg = DSGRN.ParameterGraph(net)
     wt_dict = json.load(open(wt_pm_dict))
-    print(wt_dict.keys())
     wt_plist = wt_dict[net_spec[0]]
     xc_pm_dict = json.load(open(xc_pm_dict))
-    xc_pm_plist = xc_pm_dict[net_spec[0]]
-    pm_dict = {}
+    xc_pm_plist = xc_pm_dict[net_spec[0]][-1][1]
     clb2_con = [] 
-    clb2_xc = []
     for i in wt_plist[-1][1]:
         orders = []
         hex_code = []
@@ -29,9 +26,5 @@ def param_list_reconstruct(wt_pm_dict,xc_pm_dict,network,logic_label):
         hex_code[3] = logic_label
         new_param = construct_parameter(net, hex_code, orders)
         clb2_con.append(pg.index(new_param))
-    for index,v in enumerate(xc_pm_plist):
-        if noise == xc_pm_plist[index][0]:
-            clb2_xc = xc_pm_plist[index][1]
-    xc_pm = list(set(clb2_xc).intersection(clb2_con))
-    pm_dict[noise] = xc_pm
-    return(pm_dict)
+    xc_pm = list(set(xc_pm_plist).intersection(clb2_con))
+    return(xc_pm)
