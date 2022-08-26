@@ -1,6 +1,6 @@
 
 
-def query_filter(unfiltered_l):
+def fp_filter(unfiltered_l):
     '''
     Given a list of tuples containing a fixed point (FP) label and a DSGRN parameter index, this function filters the FP labels, grabs the parameter indices corrseponding to the FP of interest and stores this data in a dictionary. The FP label of interest is 'FP { 0-1, 0, 2, 0-2, 1 }', SAC FP. The dictionary that is compiled has keys containing FP labels and values containing DSGRN parameters corresponding to each FP label, respectively. 
     '''
