@@ -17,7 +17,7 @@ def hex_order_comp(net,wt_pm,fp_file, noise, resultdir=''):
     """
     wt_dict = json.load(open(wt_pm))
     net_spec = read_networks(net)
-    wt_plist = wt_dict[net_spec[0]][-1]
+    wt_plist = wt_dict[net_spec[0]][-1][1]
     fp_dict = json.load(open(fp_file))
     fp_list = sum(fp_dict.values(),[])
     fp_hex_order = hex_order_grabber(net,fp_list)
