@@ -32,7 +32,7 @@ def fp_compiler(network,wt_pm,fp_list):
                 hex_order = hex_order + ((param.logic()[j].hex(),str(ast.literal_eval(str(param.order()[j])))))
         wt_set.append(hex_order)
     print(wt_set)
-    remainder_overlap = wt_set.intersection(set(full_param_ho.values()))
+    remainder_overlap = set(wt_set).intersection(set(full_param_ho.values()))
     fp_pi_list = [k for k in full_param_ho.keys() if full_param_ho[k] in remainder_overlap ]
     with open("fp_overlap_swi5_nrm1_plist.json", 'w') as f:
         json.dump(fp_pi_list,f)
