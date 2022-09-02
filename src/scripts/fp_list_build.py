@@ -6,6 +6,11 @@ from dsgrn_net_query.utilities.file_utilities import read_networks
 def fp_compiler(network,wt_pm,fp_list):
     net = DSGRN.Network(network)
     net_spec = read_networks(network)
+    wt_plist = json.load(open(wt_pm))
+    wt_plist = wt_plist[net_spec[0]][-1]
+    print(len(wt_plist))
+    print(wt_plist[1])
+    print(wt_plist[0])
     pg = DSGRN.ParameterGraph(net)
     fp_plist = json.load(open(fp_list))
     full_param_ho = {}
@@ -19,8 +24,6 @@ def fp_compiler(network,wt_pm,fp_list):
                 hex_order = hex_order + ((param.logic()[j].hex(),str(ast.literal_eval(str(param.order()[j])))))
         full_param_ho[i] = hex_order
     print(len(full_param_ho))
-    wt_plist = json.load(open(wt_pm))
-    wt_plist = wt_plist[net_spec[0]][-1][1]
     wt_set = set()
     for j in wt_plist:
         param = pg.parameter(i)
