@@ -7,10 +7,7 @@ def fp_compiler(network,wt_pm,fp_list):
     net = DSGRN.Network(network)
     net_spec = read_networks(network)
     wt_plist = json.load(open(wt_pm))
-    wt_plist = wt_plist[net_spec[0]][-1]
-    print(len(wt_plist))
-    print(wt_plist[1])
-    print(wt_plist[0])
+    wt_plist = wt_plist[net_spec[0]][-1][1]
     pg = DSGRN.ParameterGraph(net)
     fp_plist = json.load(open(fp_list))
     full_param_ho = {}
@@ -34,7 +31,7 @@ def fp_compiler(network,wt_pm,fp_list):
             else:
                 hex_order = hex_order + ((param.logic()[j].hex(),str(ast.literal_eval(str(param.order()[j])))))
         wt_set.add(hex_order)
-    print(len(wt_set))
+    print(wt_set)
     remainder_overlap = wt_set.intersection(set(full_param_ho.values()))
     fp_pi_list = [k for k in full_param_ho.keys() if full_param_ho[k] in remainder_overlap ]
     with open("fp_overlap_swi5_nrm1_plist.json", 'w') as f:
