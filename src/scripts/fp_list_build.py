@@ -21,7 +21,7 @@ def fp_compiler(network,wt_pm,fp_list):
                 hex_order = hex_order + ((param.logic()[j].hex(),str(ast.literal_eval(str(param.order()[j])))))
         full_param_ho[i] = hex_order
     print(len(full_param_ho))
-    wt_set = set()
+    wt_set = []
     for j in wt_plist:
         param = pg.parameter(i)
         hex_order = tuple()
