@@ -40,21 +40,21 @@ def fp_hex_order_grabber(net,plist):
 def mutant_hex_order(net,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     net_spec = read_networks(net)
     hi_plist = json.load(open(hi_pm))
-    hi_hex_order = hex_order_grabber(net,hi_plist['0.1'])
+    hi_hex_order = hex_order_grabber(net,hi_plist['SWI4 : (~NRM1)(~CLB2)(SWI4)(SWI5) : E\nNRM1 : (SWI4) : E\nNDD1 : (SWI4)(CLB2) : E\nCLB2 : (NDD1)\nSWI5 : (~CLB2)(NDD1) : E'][-1][1])
     print(len(hi_hex_order))
     del hi_plist
     lo_plist = json.load(open(lo_pm))
-    lo_hex_order = hex_order_grabber(net,lo_plist['0.1'])
+    lo_hex_order = hex_order_grabber(net,lo_plist['SWI4 : (~NRM1)(~CLB2)(SWI4)(SWI5) : E\nNRM1 : (SWI4) : E\nNDD1 : (SWI4)(CLB2) : E\nCLB2 : (NDD1)\nSWI5 : (~CLB2)(NDD1) : E'][-1][1])
     hi_lo_hex_order = hi_hex_order.intersection(lo_hex_order)
     print(len(hi_lo_hex_order))
     del lo_plist,lo_hex_order, hi_hex_order
     int_hi_plist = json.load(open(int_hi_pm))
-    int_hi_hex_order = hex_order_grabber(net,int_hi_plist['0.1'])
+    int_hi_hex_order = hex_order_grabber(net,int_hi_plist['SWI4 : (~NRM1)(~CLB2)(SWI4)(SWI5) : E\nNRM1 : (SWI4) : E\nNDD1 : (SWI4)(CLB2) : E\nCLB2 : (NDD1)\nSWI5 : (~CLB2)(NDD1) : E'][-1][1])
     print(len(int_hi_hex_order))
     hi_lo_int_hi_hex_order = hi_lo_hex_order.intersection(int_hi_hex_order)
     del int_hi_plist, int_hi_hex_order
     int_lo_plist = json.load(open(int_lo_pm))
-    int_lo_hex_order = hex_order_grabber(net,int_lo_plist['0.1'])
+    int_lo_hex_order = hex_order_grabber(net,int_lo_plist['SWI4 : (~NRM1)(~CLB2)(SWI4)(SWI5) : E\nNRM1 : (SWI4) : E\nNDD1 : (SWI4)(CLB2) : E\nCLB2 : (NDD1)\nSWI5 : (~CLB2)(NDD1) : E'][-1][1])
     print(len(hi_lo_int_hi_hex_order))
     overall_mutant_hex_order = hi_lo_int_hi_hex_order.intersection(int_lo_hex_order)
     return overall_mutant_hex_order
@@ -65,7 +65,7 @@ def overall_remainder_comp(checkpoint_fps,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo
     print("mutant remainder parameters = {}".format(len(mutant_hex_order_list)))
     wt_dict = json.load(open(wt_pm))
     wt_plist = wt_dict[net_spec[0]]
-    wt_hex_order = hex_order_grabber(net,wt_plist[-1][1])
+    wt_hex_order = hex_order_grabber(net,wt_plist['SWI4 : (~NRM1)(~CLB2)(SWI4)(SWI5) : E\nNRM1 : (SWI4) : E\nNDD1 : (SWI4)(CLB2) : E\nCLB2 : (NDD1)\nSWI5 : (~CLB2)(NDD1) : E'][-1][1])
     cycling_hex_order = wt_hex_order.intersection(mutant_hex_order_list)
     print("cycling remainder parameters = {}".format(len(cycling_hex_order)))
     fp_plist = json.load(open(checkpoint_fps))
