@@ -65,7 +65,7 @@ def overall_remainder_comp(checkpoint_fps,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo
     print("mutant remainder parameters = {}".format(len(mutant_hex_order_list)))
     wt_dict = json.load(open(wt_pm))
     wt_plist = wt_dict[net_spec[0]]
-    wt_hex_order = hex_order_grabber(net,wt_plist['SWI4 : (~NRM1)(~CLB2)(SWI4)(SWI5) : E\nNRM1 : (SWI4) : E\nNDD1 : (SWI4)(CLB2) : E\nCLB2 : (NDD1)\nSWI5 : (~CLB2)(NDD1) : E'][-1][1])
+    wt_hex_order = hex_order_grabber(net,wt_plist[-1][1])
     cycling_hex_order = wt_hex_order.intersection(mutant_hex_order_list)
     print("cycling remainder parameters = {}".format(len(cycling_hex_order)))
     fp_plist = json.load(open(checkpoint_fps))
