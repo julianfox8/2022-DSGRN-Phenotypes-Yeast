@@ -40,7 +40,7 @@ def fp_hex_order_grabber(net,plist):
 def mutant_hex_order(net,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     net_spec = read_networks(net)
     hi_plist = json.load(open(hi_pm))
-    hi_hex_order = hex_order_grabber(net,hi_plist['SWI4 : (~NRM1)(~CLB2)(SWI4)(SWI5) : E\nNRM1 : (SWI4) : E\nNDD1 : (SWI4)(CLB2) : E\nCLB2 : (NDD1)\nSWI5 : (~CLB2)(NDD1) : E'][-1][1])
+    hi_hex_order = hex_order_grabber(net,hi_plist[0][-1][1])
     print(len(hi_hex_order))
     del hi_plist
     lo_plist = json.load(open(lo_pm))
