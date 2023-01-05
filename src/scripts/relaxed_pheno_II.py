@@ -11,7 +11,7 @@ def relaxed_param_transition(wt_pm_list, xc_pm_list, net, resultdir):
     xc_dict = json.load(open(xc_pm_list))
     xc_plist = xc_dict[net_spec[0]][-1][1]
     xc_hex_order = hex_order_grabber(net,xc_plist)
-    hex_order_list = wt_hex_order.intersection(xc_hex_order)
+    hex_order_list = list(wt_hex_order.intersection(xc_hex_order))
     net_name = os.path.splitext(os.path.basename(net))[0]
     filename = "{}_relaxed_pheno_II_params.json".format(net_name)
     dir = os.path.join(resultdir, filename)
