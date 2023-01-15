@@ -4,17 +4,18 @@ from dsgrn_pheno_tools.hex_order_grabber import hex_order_grabber
 from dsgrn_net_query.utilities.file_utilities import read_networks
 
 def hex_order_comp(net,wt_pm,fp_file, noise, resultdir=''):
-    """
+    '''
     
+    Finds the list of intersecting mini-pulse generator parameters between wild-type pattern matched parameters and fixed point parameters corresponding to either of the checkpoint mutants
+    :net: the network .txt file corresponding to the network used to find the pattern matches
+    :wt_pm_dict=: the .json file for the dictionary containing the results from matching the mini-wavepool network parameters to the wild-type dataset
+    :fp_file: the .json file containing the list of fixed point parameters corresponding to either of the checkpoint mutants
+    :noise: the noise level applied to the timeseries dataset to compute the pattern matches used in this script
+    :resultdir: path to results directory
 
-    :net= the network .txt file corresponding to the network used to find the pattern matches
-    :wt_pm_dict= the dictionary containing the results from matching the network to the wild-type dataset
-    :fp_file= the clb2 factor graph hex code label for the cellular phenotype of interest
-    :noise= 
-    :resultdir= path to results directory
+    :output: dictionary .json file containing the matches for that specific proxy stored as a list of hex codes for the mini-pulse generator
+    '''
 
-    :output: dictionary .json file containing the number of matches at each noise level for that specific phenotype and proxy
-    """
     wt_dict = json.load(open(wt_pm))
     net_spec = read_networks(net)
     wt_plist = wt_dict[net_spec[0]][-1][1]
