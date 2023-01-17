@@ -6,7 +6,7 @@ from dsgrn_net_query.utilities.file_utilities import read_networks
 
 def param_list_reconstruct(wt_pm_dict,xc_pm_dict,network,logic_label):
     """
-    Given two json dictionaries, a wild-type patttern matched dictionary and a mutant pattern matched dictionary, this function reconstructs the wild-type parameter list for a given noise using the same mini-pulse generator and a given hex code to determine the logic on the Clb2 node. This reconstructed parameter list is intersected with the list of mutant pattern matches for the same noise level to determine the number of wild-type pattern matches that shares the same mini-pulse generator remainder parameter as a mutant pattern matched parameter.
+    Given two json dictionaries, a wild-type pattern matched dictionary and a mutant pattern matched dictionary, this function reconstructs the wild-type parameter list for a given noise using the same mini-pulse generator and a given hex code to determine the logic on the Clb2 node (ON, INT-H, INT-L, or OFF). This reconstructed parameter list is intersected with the list of mutant pattern matches corresponding to the logic choice used to reconstruct the wild-type list with the same noise level to determine the number of wild-type pattern matches that shares the same mini-pulse generator remainder parameter as a mutant pattern matched parameter.
     """      
     net_spec = read_networks(network)
     net = DSGRN.Network(network)
