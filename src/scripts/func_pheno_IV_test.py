@@ -13,7 +13,7 @@ def mutant_hex_order(net,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
     :lo_pm_dict=: the .json file for the dictionary containing the results from matching the mini-wavepool network parameters to the clb2 OFF dataset
     :int_hi_pm_dict=: the .json file for the dictionary containing the results from matching the mini-wavepool network parameters to the clb2 INT-H dataset
     :int_lo_pm_dict=: the .json file for the dictionary containing the results from matching the mini-wavepool network parameters to the clb2 INT-L dataset
-    :result_dir=: path to the result directory
+
 
     :output: list object containing the intersection of hex codes for the mini-pulse generator across all four cycling mutants for a given proxy
     
@@ -52,7 +52,7 @@ def overall_remainder_comp(checkpoint_fps,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo
     :int_lo_pm_dict=: the .json file for the dictionary containing the results from matching the mini-wavepool network parameters to the clb2 INT-L dataset
     :result_dir=: path to the result directory
 
-    :output: list object containing the intersection of hex codes for the mini-pulse generator across all four cycling mutants for a given proxy
+    :output: list object containing the intersection of hex codes for the mini-pulse generator across all phenotypes for a given proxy
     
     
     '''
@@ -65,7 +65,8 @@ def overall_remainder_comp(checkpoint_fps,net,wt_pm,hi_pm,lo_pm,int_hi_pm,int_lo
     wt_hex_order = hex_order_grabber(net,wt_plist[-1][1])
     cycling_hex_order = mutant_hex_order_list.intersection(wt_hex_order)
     print("cycling remainder parameters = {}".format(len(cycling_hex_order)))
-    fp_plist = json.load(open(checkpoint_fps))
+    fp_dict = json.load(open(checkpoint_fps))
+    fp_plist = sum(fp_dict.values(),[])
     fp_hex_order = hex_order_grabber(net,fp_plist)
     overall_hex_order_set = fp_hex_order.intersection(cycling_hex_order)
     print("overall remainder parameters = {}".format(len(overall_hex_order_set)))
