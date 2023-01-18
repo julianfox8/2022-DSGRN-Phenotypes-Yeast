@@ -1,7 +1,7 @@
 import json
 import sys, os
 from dsgrn_net_query.utilities.file_utilities import read_networks
-from dsgrn_pheno_tools.param_list_reconstruct import hex_order_grabber
+from dsgrn_pheno_tools.hex_order_grabber import hex_order_grabber
 
 
 def mutant_hex_order(net,hi_pm,lo_pm,int_hi_pm,int_lo_pm):
