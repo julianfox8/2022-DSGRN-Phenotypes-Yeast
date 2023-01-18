@@ -7,9 +7,7 @@ def fp_filter(unfiltered_l):
     filtered_l = {}
     for k,v in unfiltered_l.items(): 
         if v.startswith("FP { 2") or v.startswith("FP { 3") or v.startswith("FP { 1"): 
-            pass 
-        elif v.endswith(", 0 }"): 
-            pass 
+            pass  
         elif v not in filtered_l: 
             filtered_l[v] = [k] 
         else: 

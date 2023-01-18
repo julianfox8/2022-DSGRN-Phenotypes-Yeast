@@ -13,9 +13,9 @@ def fp_queries(db):
     '''
     c = sqlite3.connect(db)
     cursor = c.cursor()
-    FP_query = dict(set([ row for row in cursor.execute('select ParameterIndex,label from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 0, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
+    FP_query = dict(set([ row for row in cursor.execute('select ParameterIndex,label from Signatures natural join ( select MorseGraphIndex,label from MorseGraphAnnotations where label like "FP { _, 1, 2, _, 1 }" except select MorseGraphIndex,Source from MorseGraphEdges);')]))
     fp_filtered = fp_filter(FP_query)
-    with open("fp_query2.json", "w") as f:
+    with open("fp_query_DRC.json", "w") as f:
         json.dump(fp_filtered, f)
 
 
