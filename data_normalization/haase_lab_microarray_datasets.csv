@@ -1,0 +1,37 @@
+﻿Folder Name,Published Paper,GEO Accession,GEO name,Notes/Questions,README_name,condition,replicate,organism,characteristics,treatment,growth,sample_type
+cdc28_r1,Simmons Kovacs 2012,GSE32974,"cdc28-4, 37 degrees",,cdc28rep1_README.txt,,,,,,,
+cdc28_r2,Simmons Kovacs 2012,GSE32974,"cdc28-4, 37 degrees",,cdc28rep2_README.txt,,,,,,,
+wt_37deg,Simmons Kovacs 2012,GSE32974,"wild-type, 37 degrees",,wt_37deg_README.txt,,,,,,,
+cdc20_r1,Bristow 2014,GSE49650,Cerevisiae_cdc20,,cdc20rep1_README.txt,,,,,,,
+cdc20_r2,Bristow 2014,GSE49650,Cerevisiae_cdc20,,cdc20rep2_README.txt,,,,,,,
+cdc8_r1,Bristow 2014,GSE49650,Cerevisiae_cdc8,,cdc8rep1_README.txt,,,,,,,
+cdc8_r2,Bristow 2014,GSE49650,Cerevisiae_cdc8,,cdc8rep2_README.txt,,,,,,,
+cdc8cdc20,Bristow 2014,GSE49650,Cerevisiae_cdc8cdc20,,cdc8cdc20rep1_README.txt,,,,,,,
+gal_cse4_353_r1,Bristow 2014,GSE49650,Cerevisiae_cse4,,cse4rep1_README.txt,,,,,,,
+gal_cse4_353_r2,Bristow 2014,GSE49650,Cerevisiae_cse4,,cse4rep2_README.txt,,,,,,,
+rad53 _r1,Bristow 2014,GSE49650,Cerevisiae_rad53,,cdc8cdc20rad53rep1_README.txt,,,,,,,
+rad53_r2,Bristow 2014,GSE49650,Cerevisiae_rad53,,cdc8cdc20rad53rep2_README.txt,,,,,,,
+cdc16cdc28whi5stb1_rep1,Cho 2019,GSE75694,Cerevisiae_cdc16cdc28whi5stb1,found in Experiments (raw_normalized_metadata) dropbox,y2395rep1_cdc16cdc28whi5stb1_README.txt,,,,,,,
+cdc16cdc28whi5stb1_rep2,Cho 2019,GSE75694,Cerevisiae_cdc16cdc28whi5stb1,found in Experiments (raw_normalized_metadata) dropbox,y2395rep2_cdc16cdc28whi5stb1_README.txt,,,,,,,
+cdc28_whi5_stb1_r1,Cho 2019,GSE75694,Cerevisiae_cdc28whi5stb1_elutr,alpha-factor,y2356rep1_cdc28whi5stb1_README.txt,,,,,,,
+cdc28_whi5_stb1_r1,Cho 2019,GSE75694,Cerevisiae_cdc28whi5stb1,elutriation,y2424rep1_cdc28whi5stb1_README.txt,,,,,,,
+cdc28_whi5_stb1_r2,Cho 2019,GSE75694,Cerevisiae_cdc28whi5stb1_elutr,alpha-factor,y2356rep2_cdc28whi5stb1_README.txt,,,,,,,
+cdc28_whi5_stb1_r2,Cho 2019,GSE75694,Cerevisiae_cdc28whi5stb1,elutriation,y2424rep2_cdc28whi5stb1_README.txt,,,,,,,
+gal_sic1_3P_r1,Cho 2019,GSE75694,GAL-SIC1Δ3P_biological,,galsic1-3P_rep1_README.txt,,,,,,,
+gal_sic1_3P_r2,Cho 2019,GSE75694,GAL-SIC1Δ3P_biological,,galsic1-3P_rep2_README.txt,,,,,,,
+gal_sic1_3P_yox1_yhp1_nrm1,Cho 2019,GSE75694,GAL-SIC1Δ3P_nrm1Δyhp1Δyox1Δ_biological,,galsic1-3P_nrm1_yhp1_yox1_rep1_README.txt,,,,,,,
+mt_r1,Orlando 2008,GSE8799,Cerevisiae_CyclinMutant,,clb1-6rep1_README.txt,,,,,,,
+mt_r2,Orlando 2008,GSE8799,Cerevisiae_CyclinMutant,,clb1-6rep2_README.txt,,,,,,,
+wt_r1,Orlando 2008,GSE8799,Cerevisiae_WildType,,wt1_README.txt,,,,,,,
+wt_r2,Orlando 2008,GSE8799,Cerevisiae_WildType,,wt2_README.txt,,,,,,,
+cdc14,Cho 2017,GSE96997,cdc14-3,,y2433rep1_cdc14-3_README.txt,,,,,,,
+cdc15,Cho 2017,GSE96997,cdc15-2,,y849rep1_cdc15-2_README.txt,,,,,,,
+alphafactor_r1,Laura Simmons Kovacs,No GEO,af_r1,found in Laura's alumni dropbox,alphafactorRep1_README.txt,alphafactor,1,Saccharomyces cerevisiae,Strain: SBY099 cln1;cln2 x/s;cln3; GAL1pr-CLN3::TRP1,synchronous G1 populations collected by elutration.,YEP 2% dextrose at 30c,microarray
+alphafactor_r2,Laura Simmons Kovacs,No GEO,af_r2,found in Laura's alumni dropbox,alphafactorRep2_README.txt,alphafactor,2,Saccharomyces cerevisiae,Strain: SBY099 cln1;cln2 x/s;cln3; GAL1pr-CLN3::TRP1,synchronous G1 populations collected by elutration.,YEP 2% dextrose at 30c,microarray
+clb1-6_CHX_r1,Adam Leman,No GEO,clb16_CHX,,clb1-6CHX_README.txt,CHX,1,Saccharomyces cerevisiae,Strain: SBY661 15Da; BAR1; clb1; clb2; clb3; clb4; clb5; clb6; GAL1-CLB1,synchronous G1 populations collected by elutration.,YEP 2% dextrose + 75 ng/ml cycloheximide at 30c,microarray
+15D_rho0_167_r1,Adam Leman,No GEO,15D_rho0_167_rep1,strain 167,Leman_rho0_r1_readme.tsv,rho0,1,Saccharomyces cerevisiae,Strain: SBY167 rho0 ,synchronous G1 populations collected by elutration.,YEP 2% dextrose + 1M Sorbitol at 30c,microarray
+15D_rho0_167_r2,Adam Leman,No GEO,15D_rho0_167_rep2,,Leman_rho0_r2_readme.tsv,rho0,2,Saccharomyces cerevisiae,Strain: SBY167 rho0 ,synchronous G1 populations collected by elutration.,YEP 2% dextrose + 1M Sorbitol at 30c,microarray
+15D_rho0_clb1-6_2215_r1,Adam Leman,No GEO,15D_rho0_clb1-6_2215,strain 2215,Leman2012_rho0_clb1-6_r1_readme.tsv,rho0;clb1-6,1,Saccharomyces cerevisiae,Strain: SBY2215 clb1-6 rho0,synchronous G1 populations collected by elutration.,YEP 2% dextrose at 30c,microarray
+cdc20_nrm1_r1,Tina Kelliher,No GEO,cdc20_nrm1,,cdc20;nrm1_rep1_README.txt,cdc20;nrm1,1,Saccharomyces cerevisiae,Strain:  SBY2367 15D; MATa; bar1; cdc20::LEU2; GALL-CDC20::ADE2; CFP-TUB1::URA3; nrm1L::natMX4,synchronous G1 populations collected by elutration.,YEP 2% dextrose at 30c,microarray
+dun1_cdc8_cdc20_r1,Adam Leman,No GEO,dun1_cdc8_cdc20_r1,found in Experiments (raw_normalized_metadata) dropbox,2221_rep1readme.txt,dun1;cdc8;cdc20,1,Saccharomyces cerevisiae,"Strain: SBY2221 15Da-,cdc8ts,GALL-CDC20,dun1?",synchronous G1 populations collected by elutration.,YEP 2% dextrose at 30c,microarray
+dun1_cdc8_cdc20_r2,Adam Leman,No GEO,dun1_cdc8_cdc20_r2,found in Experiments (raw_normalized_metadata) dropbox,Unknown,dun1;cdc8;cdc20,2,Saccharomyces cerevisiae,"Strain: SBY2221 15Da-,cdc8ts,GALL-CDC20,dun1?",synchronous G1 populations collected by elutration.,YEP 2% dextrose at 30c,microarray
