@@ -27,7 +27,7 @@ def hex_order_comp(net,wt_pm,fp_file, noise, resultdir=''):
     shared_hex_order[noise] = list(fp_hex_order.intersection(noise_hex_order))
     net_name = os.path.splitext(os.path.basename(net))[0]
     f = os.path.basename(fp_file).split('_')[0]
-    filename = "{}_{}_func_pheno_III_DRC.json".format(net_name,f)
+    filename = "{}_{}_func_pheno_III.json".format(net_name,f)
     dir = os.path.join(resultdir, filename)
     with open(dir, "w") as f:
         json.dump(shared_hex_order,f)
