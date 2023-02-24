@@ -30,17 +30,17 @@ mpiexec -n <num_of_processors> WT_clb2_nonE.txt WT_clb2_nonE.db
 ### Algorithm 
 
 The goal of this query is to identify DSGRN parameters which have been pattern matched to a wild-type time series dataset.
-The first step in using this module is to run a pattern match query which requires a DSGRN network and a experimental time series dataset corresponding to the nodes within the network. A more in depth explanation of how to use the pattern matching query can be found within the dsgrn_net_query github repo (https://github.com/breecummins/dsgrn_net_query). Once the dynamic of interest, in this case a full cycle, is identified a pattern matching query is run to match parameters of the network of interest and a time series dataset. The output of this query is a dictionary containing a list of DSGRN parameters for each of the specified noise levels. This process is applied to a wild-type and mutant time series using the same network, giving us two lists of parameters which will be compared in the next step. The same function is used to examine all wild-type datasets for each proxy, while a proxy specific function is used to examine the mutant datasets.
+The first step in using this module is to run a pattern match query which requires a DSGRN network and a experimental time series dataset corresponding to the nodes within the network. A more in depth explanation of how to use the pattern matching query can be found within the dsgrn_net_query github repo (https://github.com/breecummins/dsgrn_net_query). Once the dynamic of interest, in the wild-type case a full cycle, is identified a pattern matching query is run to match parameters of the network of interest and a time series dataset. It should be noted that the dynamic of interest for the mutant query is a partial cycle where Clb2 is not oscillating.The output of this query is a dictionary containing a list of DSGRN parameters for each of the specified noise levels. This process is applied to a wild-type and mutant time series using the same network, giving us two lists of parameters which will be compared in the next step. The same function is used to examine all wild-type datasets for each proxy, while a proxy specific function is used to examine the mutant datasets.
 
 Here is a commmand for a wild-type query:
 ```
 mpiexec -n <num_of_processors> python ~/dsgrn_net_query/src/dsgrn_net_query/queries/CountPatternMatch_large_networks_parameter_indices.py <path_to_dsgrn_network_file> <path_to_list_of_dsgrn_parameters> <path_to_result_directory>
 ```
 
-Alternatively, here is a mock comand for a mutant query:
+Alternatively, here is the command for a mutant query:
 
 ```
-mpiexec -n <num_of_processors> python /2022-DSGRN-Phenotypes-Yeast/src/scripts/func_pheno_II_mutant_check/CountPatternMatch_<mutant_name>.py <path_to_dsgrn_network_file> <path_to_list_of_dsgrn_parameters> <path_to_result_directory>
+mpiexec -n <num_of_processors> python ~/2022-DSGRN-Phenotypes-Yeast/src/scripts/func_pheno_II_mutant_check/CountPatternMatch_<mutant_name>.py <path_to_dsgrn_network_file> <path_to_list_of_dsgrn_parameters> <path_to_result_directory>
 ```
 
 
