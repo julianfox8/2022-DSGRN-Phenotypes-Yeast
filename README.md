@@ -19,6 +19,13 @@ param_list_reconstruct.py
 
 ## Create DSGRN Database
 
+Once all the dependencies have been installed you will need to create a database (.db) file for the wavepool model network using the 'WT_clb2_nonE.txt' file in the networks subdirectory.
+Thae command to do this is:
+
+```
+mpiexec -n <num_of_processors> WT_clb2_nonE.txt WT_clb2_nonE.db
+```
+
 ## Dynamical Phenotype I
 ### Algorithm 
 
