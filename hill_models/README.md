@@ -1,0 +1,1 @@
+This is the code used to generate Hill models from the resulting parameter lists of the main functions. The parameter lists used in the manuscript are included here.
